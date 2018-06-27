@@ -1,34 +1,36 @@
 <template>
-  <div class="hello">
-    <my-header :title='title' :isHomePage="false"></my-header>
-    <h1>{{ msg }}</h1>
-    <button class="gotoTest" @click="gotoTest">跳转去test</button>
+  <div class="index-wrap">
+    <!-- <my-header :title='title' :isHomePage="false"></my-header> -->
+    <div class="child-router-view">
+      <router-view/>
+    </div>
+    <!-- <button class="gotoTest" @click="gotoTest">跳转去test</button> -->
+    <nav-bar ref="nav"></nav-bar>
   </div>
 </template>
 
 <script>
-  import myHeader from "@/components/header/header.vue";
+import navBar from "@/components/navbar/navbar";
   export default {
-    name: 'index',
+    name:"index",
     data () {
       return {
-        msg: 'Welcome to index',
-        title:'主页'
       }
     },
     methods:{
-      gotoTest(){
-        this.$router.push({
-          name:'test',
-          query:{
-            mydata:this.msg
-          }
-        })
-      }
     },
-    components:{myHeader}
+    components:{navBar}
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style  scoped>
+  .index-wrap {
+    height: 100%;
+    width: 100%;
+  }
+  .child-router-view {
+    width: 100%;
+    height: calc(100% - 65px);
+    overflow-y: auto;
+  }
 </style>

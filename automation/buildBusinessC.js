@@ -15,32 +15,31 @@ rl.question('please input the name of the new business Components? ', cin => {
     .then((msg) => {
       console.log(msg)
       let targetFilePath = targetDir + '/' + cin + '.vue'
-      const tmpl = `
-      <template>
-        <div class='${cin}'></div>
-      </template>
-      <script type='text/javascript'>
-        export default{
-          name:'${cin}',
-          components:{},
-          computed:{},
-          data(){
-            return {}
-          },
-          beforeCreate(){},
-          created(){},
-          beforeMount(){},
-          mounted(){},
-          beforeUpdate(){},
-          updated(){},
-          beforeDestroy(){},
-          destroyed(){},
-          methods:{},
-        }
-      </script>
-      <style lang="scss" scoped>
+      const tmpl = `<template>
+  <div class='${cin}'></div>
+</template>
+<script type='text/javascript'>
+  export default{
+    name:'${cin}',
+    components:{},
+    computed:{},
+    data(){
+      return {}
+    },
+    beforeCreate(){},
+    created(){},
+    beforeMount(){},
+    mounted(){},
+    beforeUpdate(){},
+    updated(){},
+    beforeDestroy(){},
+    destroyed(){},
+    methods:{},
+  }
+</script>
+<style lang="scss" scoped>
 
-      </style>`;
+</style>`;
       createFile(targetFilePath, tmpl)
     }, (err) => {
       console.log(err);

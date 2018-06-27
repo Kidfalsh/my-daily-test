@@ -32,6 +32,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.s[a|c]ss$/,
+        loader: 'style!css!sass'
+      },//配置scss的语法
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig

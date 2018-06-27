@@ -2,7 +2,7 @@
 <template>
   <div class="header">
     <mt-header :title="title">
-      <a @click="toBack" slot="left" v-if="isHomePage">
+      <a @click="toBack" slot="left" v-if="!isHomePage">
         <mt-button icon="back" >返回</mt-button>
       </a>
       <!-- <a slot="right" >注销</a> -->
@@ -30,7 +30,9 @@ export default {
   mounted() {},
   methods: {
     toBack() {
-      this.$router.back();
+      this.$router.push({
+        name:'homePage'
+      })
     },
   },
   components: {}
@@ -41,5 +43,9 @@ export default {
   
   .header{
     width:100%;
+  }
+  .mt-header1{
+    position: relative;
+    top :0;
   }
 </style>

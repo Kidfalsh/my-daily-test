@@ -1,0 +1,57 @@
+/*
+  作用： 清除浮动，
+  用法： 给父元素，加入clear的类名
+*/
+.clear:after { content:''; display:block; clear:both; }
+.clear { zoom:1; }
+/*
+  作用： 文本超出变省略号(只能用于一行)
+  用法： 给当前元素，加入ellipsis的类名
+*/
+.ellipsis{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/*
+  作用： 文本超出变省略号(两行)
+  用法： 给当前元素，加入ellipsis-2的类名
+*/
+.ellipsis-2{
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal!important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.hide{
+  display:none;
+}
+
+.block{
+  display:block;
+}
+
+// 红底白字底部按钮
+.common-btn{
+  background-color:$main-color;
+  color:#fff;
+  width:100%;
+  height:0.4rem;
+  line-height:0.4rem;
+  position:fixed;
+  bottom:0;
+  border:0;
+  left:0;
+  font-size:0.15rem;
+  text-align:center;
+
+  .iconfont{
+    margin-right:0.1rem;
+    font-size:0.18rem;
+  }
+}
