@@ -23,7 +23,7 @@ import navBar from "@/components/navbar/navbar";
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style  scoped>
+<style scoped>
   .index-wrap {
     height: 100%;
     width: 100%;
@@ -33,4 +33,5 @@ import navBar from "@/components/navbar/navbar";
     height: calc(100% - 65px);
     overflow-y: auto;
   }
+  
 </style>
