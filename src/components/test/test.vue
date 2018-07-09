@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import myHeader from "@/components/header/header.vue";
+  import myHeader from "@/components/base/header/header";
   export default {
     name: 'test',
     data () {

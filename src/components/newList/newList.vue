@@ -5,7 +5,7 @@
   </div>
 </template>
 <script type='text/javascript'>
-import myHeader from '@/components/header/header';
+import myHeader from '@/components/base/header/header';
   export default{
     name:'newList',
     components:{myHeader},

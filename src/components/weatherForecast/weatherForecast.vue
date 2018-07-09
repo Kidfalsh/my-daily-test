@@ -7,7 +7,7 @@
   </div>
 </template>
 <script type='text/javascript'>
-import myHeader from '@/components/header/header';
+import myHeader from '@/components/base/header/header';
 import Addressmap from 'adc-addressmap'
   export default{
     name:'weatherForecast',
