@@ -14,6 +14,17 @@ Vue.config.productionTip = false
 import Icon from 'vue-svg-icon/Icon.vue'
 Vue.component('icon', Icon)
 
+//使用axios 
+import axios from 'axios'
+Vue.prototype.axios = axios
+
+import api from '@/fetch/api.js';
+Vue.prototype.api = api 
+
+//使用城市选择组件
+import Addressmap from 'adc-addressmap'
+Vue.component('Addressmap', Addressmap)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

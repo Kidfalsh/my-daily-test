@@ -2,6 +2,7 @@
   <div class="test">
     <my-header :title="title" :isHomePage="true"></my-header>
     <div>{{msg}} </div>
+    <div class="square"></div>
   </div>
 </template>
 
@@ -494,5 +495,12 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  
+    /* css实现宽度为浏览器20% 的正方形 */
+    .square{
+      width:20%;
+      padding-bottom:20%;
+      height:0;
+      background-color: aqua;
+      margin:0 auto;
+    }
 </style>

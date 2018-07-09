@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import test from '@/components/test/test'
 import index from '@/components/index/index'
-import navbar from '@/components/navbar/navbar'
 import homePage from '@/components/homePage/homePage'
 import newList from '@/components/newList/newList'
 import weatherForecast from '@/components/weatherForecast/weatherForecast'
@@ -25,10 +24,6 @@ export default new Router({
       component: index,
       children:[
         {
-          path: '/index/navbar',
-          name: 'navbar',
-          component: navbar
-        },{
           path: '/index/homePage',
           name: 'homePage',
           component: homePage

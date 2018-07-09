@@ -5,7 +5,7 @@
       <router-view/>
     </div>
     <!-- <button class="gotoTest" @click="gotoTest">跳转去test</button> -->
-    <nav-bar ref="nav"></nav-bar>
+    <nav-bar></nav-bar>
   </div>
 </template>
 
