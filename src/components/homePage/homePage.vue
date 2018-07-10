@@ -1,6 +1,6 @@
 <template>
   <div class='homePage'>
-    <!-- <my-header :title="title" :isHomePage="true"></my-header> -->
+    <my-header :title="title" :isHomePage="true"></my-header>
     <!-- banner -->
     <my-swipe></my-swipe>
     <div class="mes">
@@ -23,16 +23,7 @@
     computed:{},
     data(){
       return {
-        title:'首页',
-        headerImg:[
-          {},{},{}
-        ],
-        sheetShow:false,
-        sheetVisible:'',
-        actions:[
-          {name:'环节'},
-          {name:'测试'}
-        ]
+        title:'个人监控系统',
       }
     },
     beforeCreate(){},
