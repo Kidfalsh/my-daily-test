@@ -7,7 +7,7 @@ import homePage from '@/components/homePage/homePage'
 import newList from '@/components/newList/newList'
 import weatherForecast from '@/components/weatherForecast/weatherForecast'
 import personCenter from '@/components/personCenter/personCenter'
-
+import interview from '@/components/interview/interview'
 Vue.use(Router)
 
 
@@ -45,6 +45,10 @@ export default new Router({
       path:'/index/test',
       name: 'test',
       component:test
+    },{
+      path:'/index/interview',
+      name:'interview',
+      component:interview
     },
   ]
 })

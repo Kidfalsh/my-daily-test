@@ -1,3 +1,5 @@
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- 面试相关的所有信息-->
 <template>
   <div class="test">
     <my-header :title="title" :isHomePage="true"></my-header>
@@ -494,16 +496,21 @@
       console.log(res)
     },
     methods:{
-      // 数组方旭的原生方法
+      /**
+       * 1.0.0数组反序的原生方法
+       */
       resoveArr(arr){
         var result=[]
-        arr.forEach(element => {
-          console.log(element)
+        // 法1
+        /* arr.forEach(element => {
           result.unshift(element)
-        });
+        }); */
+        //法2
+        arr.map(res=>{
+          result.unshift(res)
+        })
         return result
       }
-
     },
     components: {
       myHeader
@@ -511,6 +518,7 @@
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
     /* css实现宽度为浏览器20% 的正方形 */
     /* 法1 */
