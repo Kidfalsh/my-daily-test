@@ -27,8 +27,6 @@
     created(){ 
     },
     mounted(){
-      let res = this.resoveArr(this.firstArr)
-      console.log(res)
     },
     methods:{
       /** 1.0.0 数组反序的原生方法*/
@@ -56,10 +54,10 @@
           //each方法描述：以每一个匹配的元素作为上下文来执行一个函数。
         //3.也可以使用原始的循环方法进行多对象绑定，创建一个对象数组然后循环添加
           //var array = [a,b,c];
-          //for(var i=0;i<array.length;i++) { array[i].bind("event",function(e,data){ alert("bind success");)})  
+          //for(var i=0;i<array.length;i++) { array[i].bind("event",function(e,data){ alert("bind success");)}) 
+        //4.用call apply 绑定或许能行
+          //s.test().call(b) --->强行把b绑定到s的test中去
       },
-      
-      
     },
     components: {
       myHeader
