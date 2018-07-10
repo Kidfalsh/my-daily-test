@@ -1,30 +1,25 @@
 <template>
   <div class='homePage'>
     <!-- <my-header :title="title" :isHomePage="true"></my-header> -->
-    <div class="header-img">
-      <img src="" alt="">
-    </div>
+    <!-- banner -->
+    <my-swipe></my-swipe>
     <div class="mes">
-      <div @click="sheetValue">选择下拉</div>
+      
     </div>
     <div class="contain">
-      <mt-actionsheet
-        v-if="sheetShow"
-        :actions="actions"
-        v-model="sheetVisible"
-        cancelText="cancle"
-        closeOnClickModal=true></mt-actionsheet>
+      
     </div>
   </div>
 </template>
 <script type='text/javascript'>
+  import mySwipe from "@/components/base/mySwipe/mySwipe.vue";
   import myHeader from '@/components/base/header/header';
   //操作表，从屏幕下方移入。
   import { Actionsheet } from 'mint-ui';
   //Vue.component(Actionsheet.name, Actionsheet);
   export default{
     name:'homePage',
-    components:{myHeader},
+    components:{myHeader,mySwipe},
     computed:{},
     data(){
       return {
