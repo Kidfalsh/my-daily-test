@@ -1,14 +1,20 @@
 'use strict'
 const utils = require('./utils')
 const webpack = require('webpack')
-const config = require('../config')
+const config = require('../config')  // 获取 config/index.js 的默认配置
 const merge = require('webpack-merge')
-const path = require('path')
+const path = require('path') // 使用 NodeJS 自带的文件路径工具
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+
+//模拟数据提交获取 
+const appData = require('./static/json/data.json') //加载本地数据文件  
+const seller = appData.seller; //获取对应的本地数据  
+const goods = appData.goods; //获取对应的本地数据  
+const ratings = appData.ratings; //获取对应的本地数据
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -42,6 +48,27 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app) {
+      app.get('/api/seller', (req, res)=>{
+        console.log(res)
+        res.json({
+          errno: 0,  //错误数为0，有的数据错误数有限制
+          data: seller  //接口返回json数据，将上面定义的数据seller赋值给data，然后调用
+        })
+      });
+      app.get('/api/goods', (req, res)=>{
+        res.json({
+          errno: 0,
+          data: goods  //接口返回json数据，将上面定义的数据goodsr赋值给data，然后调用
+        })
+      });
+      app.get('/api/ratings',(req, res)=>{
+        res.json({
+          errno: 0,
+          data: ratings  //接口返回json数据，将上面定义的数据ratingsr赋值给data，然后调用
+        })
+      });
     }
   },
   plugins: [
