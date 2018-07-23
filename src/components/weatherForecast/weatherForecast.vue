@@ -26,6 +26,7 @@ import Addressmap from 'adc-addressmap'
     beforeCreate(){},
     created(){
       this.getWeather()
+      this.test()
     },
     beforeMount(){},
     mounted(){},
@@ -40,6 +41,12 @@ import Addressmap from 'adc-addressmap'
         this.api.get(weatherUrl).then(res=>{
           console.log(res)
         })
+      },
+      test(){
+        this.api.get('http://www.easy-mock.com/mock/5b1a2c399f331f19d6111f6b/myapi/user#!method=get')
+          .then(res=>{
+            console.log(res)
+          })
       },
       selected(){}
     },

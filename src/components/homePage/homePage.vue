@@ -4,7 +4,9 @@
     <!-- banner -->
     <my-swipe></my-swipe>
     <div class="mes">
-      
+      <div v-for="item in mesArr" :style="{color:item.bgColor}" @click.stop="gotoPages(item)">
+        {{item.name}}
+      </div>
     </div>
     <div class="contain">
       
@@ -24,6 +26,23 @@
     data(){
       return {
         title:'个人监控系统',
+        mesArr:[
+          { name: "文件上传",
+            path: "/index/uploadFile",
+            bgColor: "#35d587",
+            query: { to: "/index/uploadFile" }
+          },
+          { name: "yunhe",
+            path: "/index/yunhe",
+            bgColor: "#35d587",
+            query: { to: "/index/yunhe" }
+          },
+          { name: "波纹效果展示",
+            path: "/index/wave",
+            bgColor: "#35d587",
+            query: { to: "/index/wave" }
+          }
+        ]
       }
     },
     beforeCreate(){},
@@ -37,10 +56,33 @@
     methods:{
       sheetValue(){
         this.sheetShow=true;
+      },
+      gotoPages(item){
+        console.log(item)
+        this.$router.push({
+          path:item.path
+        })
       }
     },
   }
 </script>
 <style  scoped>
-
+  .mes{
+    display:flex;
+    flex-wrap:wrap;
+    width:100%;
+    /* justify-content: space-between; */
+    text-align: center;
+  }
+  .mes div{
+    width:45%;
+    margin-left:3%;
+    margin-top:10px;
+    height:20px;
+    line-height:20px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    background-color:#f0f0f0;
+    color:#333;
+  }
 </style>

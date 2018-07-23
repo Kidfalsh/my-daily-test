@@ -8,6 +8,10 @@ import newList from '@/components/newList/newList'
 import weatherForecast from '@/components/weatherForecast/weatherForecast'
 import personCenter from '@/components/personCenter/personCenter'
 import interview from '@/components/interview/interview'
+import uploadFile from '@/components/uploadFile/uploadFile' //文件上传页面
+import yunhe from '@/components/yunhe/yunhe' //云鹤
+import wave from '@/components/wave/wave' //波浪页面
+
 Vue.use(Router)
 
 
@@ -49,6 +53,18 @@ export default new Router({
       path:'/index/interview',
       name:'interview',
       component:interview
-    },
+    },{
+      path:'/index/uploadFile',
+      name:'uploadFile',
+      component:uploadFile
+    }, {
+      path: '/index/yunhe',
+      name: 'yunhe',
+      component: yunhe
+    }, {
+      path: '/index/wave',
+      name: 'wave',
+      component: wave
+    }
   ]
 })

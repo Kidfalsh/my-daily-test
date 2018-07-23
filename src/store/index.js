@@ -4,21 +4,18 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    maskShow: false,
-    backBtn: true,
-    backPage: -1,
+    maskShow: false,//遮罩层 
   },
   mutations: {
-    maskShow(state, value) {
+    setMaskShow(state, value) {
       state.maskShow = value;
     },
-    backPage(state, value) {
-      state.backPage = value
-    },
-    setBackBtn(state, value) {
-      state.backBtn = value;
-    },
-    setPageTitle(state, value = '健康金牛') {
+    /**
+     * 设置页面头部名称
+     * @param {state} state 
+     * @param {标题名称} value 
+     */
+    setPageTitle(state,value = '健康金牛') {
       document.title = value;
       var i = document.createElement('iframe');
       i.src = '//m.baidu.com/favicon.ico';
@@ -32,15 +29,9 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    getBackBtn(state, getters) {
-      return state.backBtn;
-    },
-    backPage(state, getters) {
-      return state.backPage;
-    },
-    systemMessage(state, value) {
-      Vue.$toast(value);
-    },
+    getMaskShow:state=>{
+      return state.maskShow
+    }
   }
 })
 export default store;

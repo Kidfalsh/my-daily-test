@@ -11,10 +11,10 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
 //模拟数据提交获取 
-const appData = require('./static/json/data.json') //加载本地数据文件  
-const seller = appData.seller; //获取对应的本地数据  
-const goods = appData.goods; //获取对应的本地数据  
-const ratings = appData.ratings; //获取对应的本地数据
+// const appData = require('./static/json/data.json') //加载本地数据文件  
+// const seller = appData.seller; //获取对应的本地数据  
+// const goods = appData.goods; //获取对应的本地数据  
+// const ratings = appData.ratings; //获取对应的本地数据
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
