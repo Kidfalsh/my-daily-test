@@ -11,7 +11,7 @@ import interview from '@/components/interview/interview'
 import uploadFile from '@/components/uploadFile/uploadFile' //文件上传页面
 import yunhe from '@/components/yunhe/yunhe' //云鹤
 import wave from '@/components/wave/wave' //波浪页面
-
+import handWritten from '@/components/handWritten/handWritten' //手写
 Vue.use(Router)
 
 
@@ -65,6 +65,10 @@ export default new Router({
       path: '/index/wave',
       name: 'wave',
       component: wave
+    }, {
+      path: '/index/handWritten',
+      name: 'handWritten',
+      component: handWritten
     }
   ]
 })

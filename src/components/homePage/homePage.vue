@@ -32,7 +32,7 @@
             bgColor: "#35d587",
             query: { to: "/index/uploadFile" }
           },
-          { name: "yunhe",
+          { name: "头部滑动伸缩效果",
             path: "/index/yunhe",
             bgColor: "#35d587",
             query: { to: "/index/yunhe" }
@@ -41,6 +41,12 @@
             path: "/index/wave",
             bgColor: "#35d587",
             query: { to: "/index/wave" }
+          },
+          {
+            name:'手写签名',
+            path:'/index/handWritten',
+            bgColor:"#35d587",
+            query:{to:'/index/handWritten'}
           }
         ]
       }

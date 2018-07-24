@@ -40,12 +40,5 @@ export default {
 </script>
 
 <style  scoped>
-  
-  .header{
-    width:100%;
-  }
-  .mt-header1{
-    position: relative;
-    top :0;
-  }
+
 </style>
