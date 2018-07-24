@@ -11,6 +11,14 @@ const store = new Vuex.Store({
       state.maskShow = value;
     },
     /**
+     * 系统通知消息
+     * @param {state} state 
+     * @param {提示字符串} value 
+     */
+    systemMessage(state,value){
+      Vue.$toast(value);
+    },
+    /**
      * 设置页面头部名称
      * @param {state} state 
      * @param {标题名称} value 

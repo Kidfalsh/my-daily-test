@@ -25,7 +25,7 @@
     computed:{},
     data(){
       return {
-        title:'个人监控系统',
+        title:'首页',
         mesArr:[
           { name: "文件上传",
             path: "/index/uploadFile",
@@ -48,7 +48,9 @@
     beforeCreate(){},
     created(){},
     beforeMount(){},
-    mounted(){},
+    mounted(){
+      this.$store.commit('setPageTitle','首页') //设置页面标题
+    },
     beforeUpdate(){},
     updated(){},
     beforeDestroy(){},
