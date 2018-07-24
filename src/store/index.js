@@ -7,7 +7,7 @@ const store = new Vuex.Store({
     maskShow: false,//遮罩层 
   },
   mutations: {
-    setMaskShow(state, value) {
+    maskShow(state, value) {
       state.maskShow = value;
     },
     /**
@@ -37,9 +37,6 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    getMaskShow:state=>{
-      return state.maskShow
-    }
   }
 })
 export default store;

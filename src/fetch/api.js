@@ -65,8 +65,25 @@ export function fetch(url, params) {
   })
 }
 
-
+let sysConfig;
 export default{
-  get,
-  fetch
+  getSys() {
+    return sysConfig.currentServer;
+  },
+  initConfig(data) {
+    sysConfig = data;
+    if (sysConfig.currentServer.rootUrl) {
+      axios.defaults.baseURL = sysConfig.currentServer.rootUrl;
+    }
+  },
+  //由于不能用post 访问 只能return get方法 获取mock.js的数据
+  /**
+   *  获取登陆信息
+   */
+  getUserInfo(params, config) {
+    return fetch('/mytickets', params)
+  },
+  getUpload(){
+    return get('/user')
+  }
 }

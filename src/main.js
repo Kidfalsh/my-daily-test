@@ -27,11 +27,28 @@ Vue.prototype.api = api
 import Addressmap from 'adc-addressmap'
 Vue.component('Addressmap', Addressmap)
 
+/**
+ * 初始化服务器地址
+ */
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-})
+axios.get('static/sysConfig/config.json?random=' + +new Date(), {}).then(function (res) {
+  // 初始化配置
+  //console.log(res)
+  api.initConfig(res.data);
+  if (res.data.devMode == 'true') {
+    // vConsole = new VConsole();
+  }
+  init();
+}).catch(function (res) {
+  alert('数据初始化出错！');
+});
+function init(){
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
+  })
+}
+
