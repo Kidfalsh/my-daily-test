@@ -19,10 +19,10 @@ export default {
         }
     }, mounted() {
         let _this = this;
-        // setTimeout(() => {
-        //     document.getElementById('mask').style.display = 'none';
-        //     // document.title = sysConfig.indexTitle;
-        // });
+        setTimeout(() => {
+            document.getElementById('mask').style.display = 'none';
+            // document.title = sysConfig.indexTitle;
+        });
     }, computed: {
         maskShow() {
             return this.$store.state.maskShow;
