@@ -6,7 +6,7 @@
         <mt-button icon="back" >返回</mt-button>
       </a>
       <!-- <a slot="right" >注销</a> -->
-      <mt-button icon="more" slot="right" ></mt-button>
+      <mt-button icon="more" slot="right" v-if="isHomePage"></mt-button>
     </mt-header>
   </div>
 </template>

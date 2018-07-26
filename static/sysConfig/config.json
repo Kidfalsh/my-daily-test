@@ -2,6 +2,9 @@
   "currentServer": {
     "rootUrl": "https://www.easy-mock.com/mock/5b1a2c399f331f19d6111f6b/myapi"
   },
+  "currentServer1":{
+    "rootUrl" : "otherInterface"
+  },
   "devMode": "false",
   "version": "1"
 }

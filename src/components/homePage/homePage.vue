@@ -47,6 +47,12 @@
             path:'/index/handWritten',
             bgColor:"#35d587",
             query:{to:'/index/handWritten'}
+          },
+          {
+            name:'fireWorks',
+            path:'/index/fireWorks',
+            bgColor:'#35d587',
+            query:{to:'/index/fireWorks'}
           }
         ]
       }
@@ -55,10 +61,13 @@
     created(){},
     beforeMount(){},
     mounted(){
-      let params={}
+      let params = {
+        
+      };
       this.api.getUserInfo(params).then(res=>{
         console.log(res)
       })
+     
       this.$store.commit('setPageTitle','首页') //设置页面标题
     },
     beforeUpdate(){},

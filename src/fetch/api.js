@@ -78,12 +78,18 @@ export default{
   },
   //由于不能用post 访问 只能return get方法 获取mock.js的数据
   /**
-   *  获取登陆信息
+   * 获取登陆信息
    */
   getUserInfo(params, config) {
     return fetch('/mytickets', params)
   },
-  getUpload(){
-    return get('/user')
-  }
+  getNews(params,config){
+    return fetch('/getNews',params)
+  },
+  /** 
+   * 微信openid登录 test 
+   */
+  // searchOpenid(params, config) {
+  //   return fetch('rest/commitData/080301/3', params)
+  // },
 }

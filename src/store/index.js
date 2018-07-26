@@ -5,10 +5,14 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     maskShow: false,//遮罩层 
+    newsWidth:0, //新闻页面的头部宽度
   },
   mutations: {
     maskShow(state, value) {
       state.maskShow = value;
+    },
+    setNewsWidth(state,value){
+      state.newsWidth = value;
     },
     /**
      * 系统通知消息
@@ -37,6 +41,10 @@ const store = new Vuex.Store({
     }
   },
   getters: {
+    //得到新闻页面头部宽度
+    getNewsWidth(state, getters){
+      return state.newsWidth;
+    }
   }
 })
 export default store;

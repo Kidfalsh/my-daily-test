@@ -44,7 +44,7 @@
     display: flex;
     margin:auto auto;
     background-color: #fcfcfc;
-    height: 60px;
+    height: 65px;
     background: #f3f3f3;
     justify-content: space-between;
   }
@@ -53,7 +53,7 @@
     width:25%;
     height:100%;
     text-align:center;
-    margin-top:5px;
+    margin-top:10px;
   }
   .svg-icon{
     width:30px;height:30px;
