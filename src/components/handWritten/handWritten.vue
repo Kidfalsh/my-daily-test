@@ -1,7 +1,7 @@
 <template>
   <div class='handWritten'>
-    <my-header :title="title"></my-header>
-    <img :src="imgData" alt="" class="img">
+    <my-header :title="title"></my-header> 
+    签名图片：<img :src="imgData" class="img" onerror='src=""'/>
     <div class="button" @click="addSign">添加签名</div>
     <signature v-if="isSign" @cancle="cancle" @confirm="confirm"></signature>
   </div>
