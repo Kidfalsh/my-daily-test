@@ -20,12 +20,14 @@ Vue.component('icon', Icon)
 import axios from 'axios'
 Vue.prototype.axios = axios
 
-import api from '@/fetch/api.js';
+//引入api 作为对象添加到Vue原型链上去   ---页面中用 this.api.xxx 直接调用
+import api from '@/fetch/api.js'; 
 Vue.prototype.api = api 
 
 //使用城市选择组件
 import Addressmap from 'adc-addressmap'
 Vue.component('Addressmap', Addressmap)
+
 
 /**
  * 初始化服务器地址

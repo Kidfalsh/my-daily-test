@@ -32,18 +32,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s[a|c]ss$/,
-        loader: 'style!css!sass'
-      },//配置scss的语法
-      {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        //options: vueLoaderConfig
+        options:{
+          loaders: {
+            scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+          }
+        }
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
