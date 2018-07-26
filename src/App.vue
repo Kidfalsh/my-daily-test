@@ -22,7 +22,7 @@ export default {
         setTimeout(() => {
             document.getElementById('mask').style.display = 'none';
             // document.title = sysConfig.indexTitle;
-        });
+        },200);
     }, computed: {
         maskShow() {
             return this.$store.state.maskShow;
@@ -59,6 +59,9 @@ svg{
   100% {
     transform: rotate(360deg);
   }
+}
+.flex{
+  display: flex;
 }
 .center {
     align-items: center;
