@@ -61,13 +61,6 @@
     created(){},
     beforeMount(){},
     mounted(){
-      let params = {
-        
-      };
-      this.api.getUserInfo(params).then(res=>{
-        console.log(res)
-      })
-     
       this.$store.commit('setPageTitle','首页') //设置页面标题
     },
     beforeUpdate(){},

@@ -30,7 +30,7 @@ import navBar from "@/components/navbar/navbar";
   }
   .child-router-view {
     width: 100%;
-    height: calc(100% - 65px);
+    height: calc(100% - 75px);
     overflow-y: auto;
   }
   

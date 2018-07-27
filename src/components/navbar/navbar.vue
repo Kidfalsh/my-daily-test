@@ -44,23 +44,23 @@
     display: flex;
     margin:auto auto;
     background-color: #fcfcfc;
-    height: 65px;
+    height: 75px;
     background: #f3f3f3;
     justify-content: space-between;
   }
   .nav-item {
     position: relative;
     width:25%;
-    height:100%;
     text-align:center;
-    margin-top:10px;
+    bottom:0px;
   }
   .svg-icon{
+    margin-top:15px;
     width:30px;height:30px;
+    text-align: center;
     color:#999;
   }
   .nav-link{
-    
     font-size:12px;
   }
   .nav-item.router-link-active  .nav-link{
