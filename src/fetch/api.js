@@ -70,6 +70,7 @@ export default{
   getSys() {
     return sysConfig.currentServer;
   },
+  get,//导出get方法 个别请求不走 mock.js
   initConfig(data) {
     sysConfig = data;
     if (sysConfig.currentServer.rootUrl) {

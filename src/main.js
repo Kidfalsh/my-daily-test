@@ -24,11 +24,11 @@ Vue.prototype.axios = axios
 import api from '@/fetch/api.js'; 
 Vue.prototype.api = api 
 
-//使用城市选择组件
-import Addressmap from 'adc-addressmap'
-Vue.component('Addressmap', Addressmap)
 
-
+//城市组件--全局安装
+import VueAreaLinkage from 'vue-area-linkage'
+import 'vue-area-linkage/dist/index.css'
+Vue.use(VueAreaLinkage)
 /**
  * 初始化服务器地址
  */

@@ -1,32 +1,49 @@
 <template>
   <div class='weatherForecast'>
     <my-header :title="title"></my-header>
-    <div class="city">
-      <addressmap :area="area" @selected="selected"></addressmap>
-    </div>
+    <area-select type='all' :placeholders="placeholders" 
+                :level='1' v-model="selected" size="small"
+                :data="pcaa">
+    </area-select>
   </div>
 </template>
 <script type='text/javascript'>
 import myHeader from '@/components/base/header/header';
-import Addressmap from 'adc-addressmap'
+// 三级联动
+import { AreaSelect } from "vue-area-linkage";
+import AreaData from "area-data";
+import { pca, pcaa } from "area-data";
   export default{
     name:'weatherForecast',
-    components:{myHeader,Addressmap},
+    components:{myHeader,AreaSelect: AreaSelect},
     computed:{},
     data(){
       return {
         title:'天气预报',
-        area:[
-          {Name: '北京',  ID: '01'},
-          {Name: '南京', ID: '0401'},
-          {Name: '西湖区', ID: '060105'}
-        ]
+        pca: pca,
+        pcaa: pcaa,
+        placeholders: ["请选择省份或直辖市", "请选择城市"],
+        selected:[],
+        send_search_form: {
+          orderCode: "",
+          itemName: "",
+          orderTime: [],
+          consigneeName: "",
+          state: "",
+          selected: []
+        }
       }
+    },
+    watch:{
+      'selected'(val){
+        if(val){
+          this.getWeather(val)
+        }
+      },
     },
     beforeCreate(){},
     created(){
-      this.getWeather()
-      this.test()
+      
     },
     beforeMount(){},
     mounted(){},
@@ -34,21 +51,23 @@ import Addressmap from 'adc-addressmap'
     updated(){},
     beforeDestroy(){},
     destroyed(){},
-    methods:{
-      getWeather(){
-        var getCityUrl=`http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json`
-        var weatherUrl=`http://wthrcdn.etouch.cn/weather_mini?city=成都`
+    methods:{  
+      getWeather(value){
+        let city=''
+        if(value){
+          value = value[1]
+          var index = Object.keys(value) //获取下标
+          city = value[index]
+        } 
+        city = city.replace('市','')
+        console.log(city)
+        var weatherUrl=`http://wthrcdn.etouch.cn/weather_mini?city=`+city;
         this.api.get(weatherUrl).then(res=>{
-          console.log(res)
+          if(res.status=='1000'&&res.desc=='OK'){
+            console.log(res.data)
+          }
         })
       },
-      test(){
-        this.api.get('http://www.easy-mock.com/mock/5b1a2c399f331f19d6111f6b/myapi/user#!method=get')
-          .then(res=>{
-            console.log(res)
-          })
-      },
-      selected(){}
     },
   }
 </script>
