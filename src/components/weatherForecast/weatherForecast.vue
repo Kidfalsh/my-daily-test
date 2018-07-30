@@ -1,9 +1,10 @@
 <template>
   <div class='weatherForecast'>
     <my-header :title="title"></my-header>
+    请选择城市：
     <area-select type='all' :placeholders="placeholders" 
                 :level='1' v-model="selected" size="small"
-                :data="pcaa">
+                :data="pcaa" class="areaSelect">
     </area-select>
   </div>
 </template>
@@ -71,6 +72,6 @@ import { pca, pcaa } from "area-data";
     },
   }
 </script>
-<style scoped>
-
+<style lang="scss" scoped>
+  
 </style>
