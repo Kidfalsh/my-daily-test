@@ -387,8 +387,51 @@
         有了 async/await,我们的代码执行异步看起来像执行同步一样。
         可以从头到尾读起来非常简单和易懂，因为出现结果顺序和函数题中从头到尾顺序一样啊！
 
-二、promise 
+二、promise
+  1.promise 用法
+    下面我们自己手写一个符合 PromiseA+规范 的Promise
+    console.log(1)
+    new Promise(()=>{
+      console.log(2)
+    })
+    console.log(3)
+    输出：1 2 3 
+    换一种写法：
+    因为我们都知道promise是异步的，所以按理会依次输出 1,3,2 然后我们运行之后发现
+    它依次输出的是 1,2,3 当我们使用then的时候：
+    console.log(1)
+    Promise.resolve().then(()=>{
+      console.log(2)
+    })
+    console.log(3)
+    输出：1 3 2
 三、await/async
+四、数组的map, filter ，sort和 reduce用法
+    第一组(包含名、姓、出生日期以及死亡日期)
+      const inventors = [
+        { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+        { first: 'wawa', last: 'fs', year: 1830, passed: 1905 },
+        { first: 'grvd', last: 'xcvxcv', year:1900, passed: 1977 },
+        { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
+      ];
+    第二组(people数组，包含一组人名，名姓之间用逗号分隔。)
+      ['Albert, Einstein', 'wawa, fs', 'grvd, xcvxcv', 'Hanna, Hammarström']
+    根据这两组数组，完成以下的题目
+      筛选出生于16世纪的发明家；
+      以数组形式，列出其名与姓；
+      根据其出生日期，并从大到小排序；
+      计算所有的发明家加起来一共活了几岁；
+      按照其年龄大小排序；
+    1.1 filter()（过滤操作，筛选符合条件的所有元素，若为true则返回组成新数组，以第一题为例：）
+      function bornyear(){
+        return inventors.year>=1800 && inventors.year<=1900
+      }
+      let fifteen = inventors.filter(bornyear)
+      console.log(fifteen)
+      //可以简化为
+      let fifteen = inventors.filter(inventor=>{
+        return inventor.year>=1800 && inventor.year<=1900
+      })
 
 
 

@@ -14,6 +14,8 @@ import wave from '@/components/wave/wave' //波浪页面
 import handWritten from '@/components/handWritten/handWritten' //手写签名
 import fireWorks from '@/components/fireWorks/fireWorks' //烟花效果
 import forbidden from '@/components/404/404'
+import barrage from '@/components/barrageSet/barrageSet' //弹幕页面
+import arrayClone from '@/components/arrayClone/arrayClone' // 数组/对象克隆
 Vue.use(Router)
 
 
@@ -75,10 +77,18 @@ export default new Router({
       path: '/index/fireWorks',
       name: 'fireWorks',
       component: fireWorks
+    },{
+      path:'/index/barrageSet',
+      name:'barrage',
+      component:barrage,
     }, {
       path: '/404',
       name: '404',
       component: forbidden
+    },{
+      path: '/index/arrayClone',
+      name: 'arrayClone',
+      component: arrayClone
     }, {
       path: '*',    // 此处需特别注意至于最底部
       redirect: '/404'

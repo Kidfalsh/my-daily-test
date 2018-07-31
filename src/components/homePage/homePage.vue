@@ -53,6 +53,18 @@
             path:'/index/fireWorks',
             bgColor:'#35d587',
             query:{to:'/index/fireWorks'}
+          },
+          {
+            name:'barrage',
+            path:'/index/barrageSet',
+            bgColor:'#35d871',
+            query:{to:'/index/barrage'}
+          },
+          {
+            name:'数组/对象の克隆',
+            path:'/index/arrayClone',
+            bgColor:'#35d871',
+            query:{to:'/index/arrayClone'}
           }
         ]
       }

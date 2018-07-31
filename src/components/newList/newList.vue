@@ -37,7 +37,6 @@ import myHeader from '@/components/base/header/header';
       this.headerWidth = this.$refs.header.scrollWidth //class为header的宽度
       this.$store.commit("setNewsWidth",this.headerWidth)
       this.loadNews(0)
-      
     },
     beforeUpdate(){},
     updated(){},
@@ -78,7 +77,8 @@ import myHeader from '@/components/base/header/header';
       position: relative;color:#666666;
       .header-item{
         display: inline-block;width:80px;
-        padding: 1%;text-align: center;height:30px;
+        padding: 1%;
+        text-align: center;height:30px;
         line-height: 30px;margin: 5px 0px;
         color:#666666;font-size: 15px;
       }

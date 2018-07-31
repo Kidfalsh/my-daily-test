@@ -93,4 +93,11 @@ export default{
   // searchOpenid(params, config) {
   //   return fetch('rest/commitData/080301/3', params)
   // },
+  /**
+   * getBarrage 
+   * 获取弹幕信息
+   */
+  getBarrage(params,config){
+    return fetch('/getBarrage',params)
+  }
 }
