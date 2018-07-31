@@ -38,8 +38,6 @@
             console.log(e)
             var msg = e.code;
             var dd = e.message;
-            console.log(msg)
-            console.log(dd)
           }
         )
       }
