@@ -84,5 +84,9 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+  //高德地图
+  externals: {
+    'AMap': 'AMap',
+  },
 }

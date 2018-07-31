@@ -29,6 +29,18 @@ Vue.prototype.api = api
 import VueAreaLinkage from 'vue-area-linkage'
 import 'vue-area-linkage/dist/index.css'
 Vue.use(VueAreaLinkage)
+
+
+//引入vue-amap  --高德地图
+import AMap from 'vue-amap';
+Vue.use(AMap);
+// 初始化vue-amap
+AMap.initAMapApiLoader({
+  // 申请的高德key
+  key: 'a88dd4fa4f41a209d806e908d8d615a2',
+  // 插件集合
+  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType']
+});
 /**
  * 初始化服务器地址
  */

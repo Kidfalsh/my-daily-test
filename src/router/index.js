@@ -17,6 +17,7 @@ import forbidden from '@/components/404/404'
 import barrage from '@/components/barrageSet/barrageSet' //弹幕页面
 import arrayClone from '@/components/arrayClone/arrayClone' // 数组/对象克隆
 import objClone from '@/components/objClone/objClone' // 对象深浅拷贝
+import gadMap from "@/components/gadMap/gadMap"
 Vue.use(Router)
 
 
@@ -90,6 +91,10 @@ export default new Router({
       path: '/index/arrayClone',
       name: 'arrayClone',
       component: arrayClone
+    },{
+      path: '/index/gadMap',
+      name: 'gadMap',
+      component: gadMap
     },{
       path: '/404',
       name: '404',

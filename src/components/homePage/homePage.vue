@@ -71,6 +71,12 @@
             path:'/index/objClone',
             bgColor:'#35d871',
             query:{to:'/index/objClone'}
+          },
+          {
+            name:"高德",
+            path:'/index/gadMap',
+            bgColor:'#35d871',
+            query:{to:'/index/gadMap'}
           }
         ]
       }
