@@ -65,6 +65,12 @@
             path:'/index/arrayClone',
             bgColor:'#35d871',
             query:{to:'/index/arrayClone'}
+          },
+          {
+            name:'对象浅拷贝/深拷贝',
+            path:'/index/objClone',
+            bgColor:'#35d871',
+            query:{to:'/index/objClone'}
           }
         ]
       }
