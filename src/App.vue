@@ -44,7 +44,7 @@ export default {
     margin:0px;
   }
   html,body{
-    /* -webkit-overflow-scrolling:touch; */
+     -webkit-overflow-scrolling:touch; 
 }
 svg{
     fill:#fff;

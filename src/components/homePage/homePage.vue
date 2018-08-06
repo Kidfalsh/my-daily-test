@@ -86,6 +86,8 @@
     beforeMount(){},
     mounted(){
       this.$store.commit('setPageTitle','首页') //设置页面标题
+      //document.getElementsByTagName('title')[0].innerHTML ='222'
+      //document.title ='222'
     },
     beforeUpdate(){},
     updated(){},
