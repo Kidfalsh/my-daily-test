@@ -17,7 +17,8 @@ import forbidden from '@/components/404/404'
 import barrage from '@/components/barrageSet/barrageSet' //弹幕页面
 import arrayClone from '@/components/arrayClone/arrayClone' // 数组/对象克隆
 import objClone from '@/components/objClone/objClone' // 对象深浅拷贝
-import gadMap from "@/components/gadMap/gadMap"
+import gadMap from "@/components/gadMap/gadMap" // 高德地图
+import awaitAsync from "@/components/awaitAsync/awaitAsync"
 Vue.use(Router)
 
 
@@ -95,6 +96,10 @@ export default new Router({
       path: '/index/gadMap',
       name: 'gadMap',
       component: gadMap
+    },{
+      path:'/index/awaitAsync',
+      name:'awaitAsync',
+      component:awaitAsync
     },{
       path: '/404',
       name: '404',

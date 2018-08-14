@@ -77,6 +77,12 @@
             path:'/index/gadMap',
             bgColor:'#35d871',
             query:{to:'/index/gadMap'}
+          },
+          {
+            name:"awaitAsync",
+            path:'/index/awaitAsync',
+            bgColor:'#35d871',
+            query:{to:'/index/awaitAsync'}
           }
         ]
       }
