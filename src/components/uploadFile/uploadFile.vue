@@ -4,7 +4,7 @@
     <div class="container">
       <div class="content">
         <img :src="infoSrc" alt="" class="imgShow">
-        <input @change="fileImage" type="file" accept="image/jpeg,image/x-png,image/gif,image/png" id="" value="" /> 
+        <input @change="fileImage" type="file" accept="image/*,.pdf" id="" value="" /> 
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ import myHeader from '@/components/base/header/header';
         console.log(e)
         var file = e.target.files[0];
         var imgSize=file.size/1024;
-        if(imgSize>3000){
+        if(imgSize>30000000){
             alert('请上传大小不要超过3MB的图片')
         }else{
             var reader = new FileReader();

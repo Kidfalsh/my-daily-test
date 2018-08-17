@@ -19,18 +19,41 @@ import myHeader from '@/components/base/header/header'
     beforeCreate(){},
     created(){},
     beforeMount(){},
-    mounted(){},
+    mounted(){
+      //console.log(this.getData())  //Promise {<resolved>: "Hello Mr D"}
+      //this.getData().then(res=>{console.log(res)})  //  Hello Mr D
+      this.test()   //something 
+    },
     beforeUpdate(){},
     updated(){},
     beforeDestroy(){},
     destroyed(){},
-    methods:{},
+    methods:{
+      async getData(){
+        return "Hello Mr D"
+      },
+      getSomething(){
+        return 'something'
+      },
+      async testAsync(){
+        return Promise.resolve('hello async')
+      },
+      async test(){
+        const v1 = this.getSomething()
+        const v2 = this.testAsync()
+        console.log(v1,v2)
+      }
+    },
   }
 </script>
 <style lang="scss" scoped>
   .awaitAsync{
+    .mes{
+      display:flex;
+      width:100%;
+    }
     .button{
-      width:30%;
+      width:42.5%;
       height:40px;
       text-align:center;
       background-color: bisque;
@@ -39,6 +62,8 @@ import myHeader from '@/components/base/header/header'
       line-height:40px;
       border:none;
       border-radius:5px;
+      margin-left:5%;
+      margin-top:1%;
     }
   }
 </style>
