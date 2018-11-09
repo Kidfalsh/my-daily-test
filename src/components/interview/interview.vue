@@ -58,6 +58,91 @@
         //4.用call apply 绑定或许能行
           //s.test().call(b) --->强行把b绑定到s的test中去
       },
+      //symbol 测试
+      //promise 测试 
+      //红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次，
+      //意思就是3秒，执行一次 red 函数，2秒执行一次 green 函数，1秒执行一次 yellow 函数，
+      //不断交替重复亮灯，意思就是按照这个顺序一直执行这3个函数，这步可以就利用递归来实现。
+      red(){
+        console.log('red')
+      },
+      green(){
+        console.log('green')
+      },
+      yellow(){
+        console.log('yellow')
+      },
+      light(timmer, cb) {
+        let cd = cb
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () {
+            cd()
+            resolve()
+          }, timmer)
+        })
+      },
+      step() {
+        var that = this
+        Promise.resolve().then(function () {
+          return that.light(3000, that.red);
+        }).then(function () {
+          return that.light(2000, that.green);
+        }).then(function () {
+          return that.light(1000, that.yellow);
+        }).then(function () {
+          that.step();
+        });
+      },
+      //arr 操作方法
+      arrDealWays(){
+        let arr = [1,2,3,4]
+        const brr = arr.concat(1,{name:'false'},[2,3])
+        // for(let i in brr){
+        //   console.log(i+"--->"+brr[i])
+        // }
+        //8. map forEach  //判断是否为数组
+          /* let brr1 = brr.map((i)=>{
+            console.log(i)
+          })
+          try{
+            brr.map(i=>i)&&console.log('brr is arr')
+          }catch(err){
+            console.error('brr is obj')
+          } */
+        // 9.filter
+          /* let brr2 =[1,2,3,45,'ajsdhkajs']
+          let brr3 = arr.filter(item=>{
+            return item<3
+          }) */
+        //console.log(brr3)
+        // 10.every() some()
+          /*let brr4 = [2,'asjdh',5,8]
+          let brr4n = brr4.every(i=>{
+            i==2
+          })
+          console.log(brr4n) */
+        //11.reduce() reduceRight()
+          /* let brr5=[1,2,3,4,5,666]
+          //求和
+          let brr6 = brr5.reduceRight((x,y)=>x+y)
+          console.log(brr5)
+          console.log(brr6) 
+          //找最大值
+          console.log(brr5.reduce((x,y)=>x>y?x:y)) */
+        //12.indexOf() lastIndexOf()
+          let brr7 = [1,3,5,5,5,7,1,7,9]
+          let brr8=this.uniq(brr7)
+          console.log(brr7)
+          console.log(brr8)
+      },
+      //数组去重
+      uniq(arr){
+        let _arr = [];
+        arr.map(item=>_arr.indexOf(item)===-1&&_arr.push(item))
+        return _arr
+      },
+      //粒子 数字
+      
     },
     components: {
       myHeader

@@ -83,6 +83,12 @@
             path:'/index/awaitAsync',
             bgColor:'#35d871',
             query:{to:'/index/awaitAsync'}
+          },
+          {
+            name:"2048",
+            path:'/index/particle',
+            bgColor:'#35d871',
+            query:{to:'/index/particle'}
           }
         ]
       }

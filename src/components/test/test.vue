@@ -1,509 +1,255 @@
 <template>
   <div class="test">
-    <my-header :title="title" :isHomePage="true"></my-header>
-    <div>{{msg}} </div>
-    <div class="square"></div>
-    <div id='square'></div>
+    <my-header :title="title" :isHomePage="false"></my-header>
+    <div id="body" style="width:100%;height:500px;"></div>
   </div>
 </template>
 
 <script>
   import myHeader from "@/components/base/header/header";
+  (function () { 
+    var context;//画布上下文
+    var boundaryHeight;//画布高，边界值
+    var boundaryWidth;//画布宽，边界值
+    var starArr = [];
+    var meteorArr = [];
+    var STAR_COUNT = 500;//星星数，常量
+    var METEOR_COUNT = 4;//流星数，常量
+    var METEOR_SEPARATE = 300; //流星之间间隔，常量
+    var meteorCoordinateArr = [];//存所有流星的坐标数组
+    var playMeteorTimeout;
+    var playStarsTimeout;
+
+    //初始化画布及context
+    function init(container) {
+        starArr = [];
+        meteorArr = [];
+        //初始化  
+        var container = document.getElementById('body')[0];
+        var canvas = document.createElement("canvas");
+        container.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        boundaryHeight = canvas.height;
+        boundaryWidth =  canvas.width;
+        //获取context
+        context = canvas.getContext("2d");
+        context.fillStyle = "black";
+
+        //画星星
+        for (var i = 0; i < STAR_COUNT; i++) {
+            var star = new Star();
+            star.init();
+            star.draw();
+            starArr.push(star);
+        }
+        //画流星
+        for (var j = 0; j < METEOR_COUNT; j++) {
+            var rain = new MeteorRain();
+            rain.init(j);
+            rain.draw();
+            meteorArr.push(rain);
+        }
+
+        playStars();//星星动起来
+        playMeteor();//流星动起来
+    }
+
+    //创建一个星星对象
+    var Star = function () {
+        this.x = boundaryWidth * Math.random();//横坐标
+        this.y = boundaryHeight * Math.random();//纵坐标
+        this.color = "";//星星颜色
+    };
+
+    Star.prototype = {
+        constructor: Star,
+        //初始化
+        init: function () {
+            this.getColor();
+        },
+        //产生随机颜色
+        getColor: function () {
+            var _randomNum = Math.random();
+
+            if (_randomNum < 0.5) {
+                this.color = "gray";
+            }
+            else {
+                this.color = "white";
+            }
+
+        },
+        //绘制
+        draw: function () {
+            context.beginPath();
+            //画圆点
+            context.arc(this.x, this.y, 0.05, 0, 2 * Math.PI);
+            context.strokeStyle = this.color;
+            context.stroke(); 
+            context.closePath();
+        }  
+    }
+
+    //星星闪起来
+    function playStars() {
+        for (var n = 0; n < STAR_COUNT; n++) {  
+            starArr[n].getColor();  
+            starArr[n].draw();  
+        }  
+
+        clearTimeout(playStarsTimeout);
+        playStarsTimeout = setTimeout(playStars, 200);
+    }
+
+
+    //创建一个流星对象
+    var MeteorRain = function () {
+        this.x = -1;//流星的横坐标
+        this.y = -1;//流星的纵坐标
+        this.length = -1;//流星的长度
+        this.angle = 30; //倾斜角度
+        this.width = -1;//流星所占宽度，及矩形的宽度
+        this.height = -1;//流星所占高度，及矩形的高度
+        this.speed = 1;//速度
+        this.offset_x = -1;//横轴移动偏移量
+        this.offset_y = -1;//纵轴移动偏移量
+        this.alpha = 1; //透明度
+    };
+
+    MeteorRain.prototype = {
+        constructor: MeteorRain,
+        //初始化
+        init: function (i) {
+            this.alpha = 1;//透明度
+            this.angle = 30; //流星倾斜角
+            this.speed = Math.ceil(Math.random() + 0.5); //流星的速度
+
+            var x = Math.random() * 80 + 180;
+            var cos = Math.cos(this.angle * 3.14 / 180);
+            var sin = Math.sin(this.angle * 3.14 / 180) ;
+
+            this.length = Math.ceil(x);//流星长度
+
+            this.width = this.length * cos;  //流星所占宽度，及矩形的宽度
+            this.height = this.length * sin; //流星所占高度，及矩形的高度
+            this.offset_x = this.speed * cos * 3.5;
+            this.offset_y = this.speed * sin * 3.5;
+
+            this.getPos(i);
+        },
+        //计算流星坐标
+        countPos: function () {
+            //往左下移动,x减少，y增加
+            this.x = this.x - this.offset_x;
+            this.y = this.y + this.offset_y;
+        },
+        //获取随机坐标
+        getPos: function (i) {
+            _this = this;
+
+            function getCoordinate() {
+                _this.x = Math.random() * boundaryWidth; //x坐标
+
+                for (var k = 0; k < meteorCoordinateArr.length; k++) {
+                    if (Math.abs(_this.x - meteorCoordinateArr[k]) < METEOR_SEPARATE) { //这里如果流星之间距离过小，会把其他流星隔断，严重影响效果。
+                        return getCoordinate();
+                    }   
+                }
+
+                meteorCoordinateArr[i] = _this.x;
+            }
+
+            getCoordinate();
+
+            this.y = 0.2 * boundaryHeight;  //y坐标
+        },
+        //画流星
+        draw: function () {
+            context.save();
+            context.beginPath();
+            context.lineWidth = 2.5; //宽度
+            context.globalAlpha = this.alpha; //设置透明度
+
+            //创建横向渐变颜色,起点坐标至终点坐标
+            var line = context.createLinearGradient(this.x, this.y, this.x + this.width, this.y - this.height);
+
+            //分段设置颜色
+            line.addColorStop(0, "rgba(255, 255, 255, 1)");
+            line.addColorStop(1, "rgba(255, 255,255 , 0)");
+
+            if (this.alpha < 0 ) {
+                this.alpha = -this.alpha;
+            }
+            //填充
+            context.strokeStyle = line;
+            //起点
+            context.moveTo(this.x, this.y);
+            //终点
+            context.lineTo(this.x + this.width, this.y - this.height);
+
+            context.closePath();
+            context.stroke();
+            context.restore();
+        },
+        move: function () {
+
+            var x = this.x + this.width - this.offset_x;
+            var y = this.y - this.height;
+
+            this.alpha -= 0.002;
+
+            //重新计算位置，往左下移动
+            this.countPos();
+
+            if (this.alpha <= 0) {
+                this.alpha = 0;
+            }
+            else if(this.alpha > 1) {
+                this.alpha = 1;
+            }
+
+            //画一个矩形去清空流星
+            context.clearRect(this.x - this.offset_x, y, this.width + this.offset_x, this.height); 
+            //重绘
+            this.draw(); 
+        }
+    }    
+    //流星动起来
+    function playMeteor() {
+        for (var n = 0; n < METEOR_COUNT; n++) {  
+            var rain = meteorArr[n];
+
+            rain.move();//移动
+
+            if (rain.y > boundaryHeight + 100) {//超出界限后重来
+                context.clearRect(rain.x, rain.y - rain.height, rain.width, rain.height);
+                meteorCoordinate[n] = 0;//清空坐标数组具体流星的坐标
+                meteorArr[n] = new MeteorRain(n);
+                meteorArr[n].init(n);
+            }
+        }  
+
+        clearTimeout(playMeteorTimeout);
+        playMeteorTimeout = setTimeout(playMeteor, 5);
+    } 
+  }());
   export default {
     name: 'test',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
         title:'test',
-        json:[
-          {
-            "id": 0,
-            "pid": null,
-            "name": "总体视图"
-          }, {
-            "id": 1,
-            "pid": 0,
-            "name": "收入"
-          }, {
-            "id": 38,
-            "pid": 0,
-            "name": "用户"
-          }, {
-            "id": 73,
-            "pid": 0,
-            "name": "业务量"
-          }, {
-            "id": 126,
-            "pid": 0,
-            "name": "市场竞争(高校)"
-          }, {
-            "id": 2,
-            "pid": 1,
-            "name": "出账收入"
-          }, {
-            "id": 36,
-            "pid": 1,
-            "name": "缴费"
-          }, {
-            "id": 39,
-            "pid": 38,
-            "name": "到达"
-          }, {
-            "id": 47,
-            "pid": 38,
-            "name": "新增"
-          }, {
-            "id": 61,
-            "pid": 38,
-            "name": "净增"
-          }, {
-            "id": 74,
-            "pid": 73,
-            "name": "话音业务"
-          }, {
-            "id": 86,
-            "pid": 73,
-            "name": "数据业务"
-          }, {
-            "id": 99,
-            "pid": 73,
-            "name": "流量业务"
-          }, {
-            "id": 115,
-            "pid": 73,
-            "name": "校园产品"
-          }, {
-            "id": 127,
-            "pid": 126,
-            "name": "到达"
-          }, {
-            "id": 139,
-            "pid": 126,
-            "name": "新增"
-          }, {
-            "id": 153,
-            "pid": 126,
-            "name": "净增"
-          }, {
-            "id": 3,
-            "pid": 2,
-            "name": "语音收入"
-          }, {
-            "id": 8,
-            "pid": 2,
-            "name": "数据业务收入"
-          }, {
-            "id": 21,
-            "pid": 2,
-            "name": "流量业务收入"
-          }, {
-            "id": 26,
-            "pid": 2,
-            "name": "增值业务收入"
-          }, {
-            "id": 29,
-            "pid": 2,
-            "name": "校园产品收入"
-          }, {
-            "id": 32,
-            "pid": 2,
-            "name": "固定费收入"
-          }, {
-            "id": 35,
-            "pid": 2,
-            "name": "ARPU"
-          }, {
-            "id": 37,
-            "pid": 36,
-            "name": "当期户均余额"
-          }, {
-            "id": 182,
-            "pid": 36,
-            "name": "日累计人均预存款"
-          }, {
-            "id": 183,
-            "pid": 36,
-            "name": "当日人均预存款"
-          }, {
-            "id": 40,
-            "pid": 39,
-            "name": "到达用户数"
-          }, {
-            "id": 48,
-            "pid": 47,
-            "name": "新增用户数"
-          }, {
-            "id": 55,
-            "pid": 47,
-            "name": "新增市场份额"
-          }, {
-            "id": 62,
-            "pid": 61,
-            "name": "净增用户数"
-          }, {
-            "id": 69,
-            "pid": 61,
-            "name": "净增市场份额"
-          }, {
-            "id": 75,
-            "pid": 74,
-            "name": "本地通话"
-          }, {
-            "id": 78,
-            "pid": 74,
-            "name": "长途通话"
-          }, {
-            "id": 81,
-            "pid": 74,
-            "name": "漫游通话"
-          }, {
-            "id": 87,
-            "pid": 86,
-            "name": "飞信活跃用户数"
-          }, {
-            "id": 89,
-            "pid": 86,
-            "name": "彩铃订购用户数"
-          }, {
-            "id": 91,
-            "pid": 86,
-            "name": "短信条数"
-          }, {
-            "id": 93,
-            "pid": 86,
-            "name": "彩信条数"
-          }, {
-            "id": 95,
-            "pid": 86,
-            "name": "GPRS流量"
-          }, {
-            "id": 97,
-            "pid": 86,
-            "name": "WLAN时长"
-          }, {
-            "id": 107,
-            "pid": 99,
-            "name": "GPRS业务"
-          }, {
-            "id": 112,
-            "pid": 99,
-            "name": "wlan业务"
-          }, {
-            "id": 116,
-            "pid": 115,
-            "name": "校园v网"
-          }, {
-            "id": 128,
-            "pid": 127,
-            "name": "到达用户数"
-          }, {
-            "id": 135,
-            "pid": 127,
-            "name": "到达市场份额"
-          }, {
-            "id": 140,
-            "pid": 139,
-            "name": "新增用户数"
-          }, {
-            "id": 147,
-            "pid": 139,
-            "name": "新增市场份额"
-          }, {
-            "id": 154,
-            "pid": 153,
-            "name": "净增用户数"
-          }, {
-            "id": 161,
-            "pid": 153,
-            "name": "净增市场份额"
-          }, {
-            "id": 4,
-            "pid": 3,
-            "name": "本地通话收入"
-          }, {
-            "id": 6,
-            "pid": 3,
-            "name": "长途通话收入"
-          }, {
-            "id": 9,
-            "pid": 8,
-            "name": "飞信"
-          }, {
-            "id": 11,
-            "pid": 8,
-            "name": "彩铃"
-          }, {
-            "id": 13,
-            "pid": 8,
-            "name": "短信"
-          }, {
-            "id": 15,
-            "pid": 8,
-            "name": "彩信"
-          }, {
-            "id": 17,
-            "pid": 8,
-            "name": "GPRS"
-          }, {
-            "id": 19,
-            "pid": 8,
-            "name": "WLAN"
-          }, {
-            "id": 22,
-            "pid": 21,
-            "name": "GPRS业务收入"
-          }, {
-            "id": 24,
-            "pid": 21,
-            "name": "WLAN业务收入"
-          }, {
-            "id": 27,
-            "pid": 26,
-            "name": "语音增值业务收入"
-          }, {
-            "id": 30,
-            "pid": 29,
-            "name": "V网收入"
-          }, {
-            "id": 33,
-            "pid": 32,
-            "name": "月租费"
-          }, {
-            "id": 41,
-            "pid": 40,
-            "name": "移动"
-          }, {
-            "id": 43,
-            "pid": 40,
-            "name": "电信C网"
-          }, {
-            "id": 45,
-            "pid": 40,
-            "name": "联通G网"
-          }, {
-            "id": 49,
-            "pid": 48,
-            "name": "移动"
-          }, {
-            "id": 51,
-            "pid": 48,
-            "name": "联通"
-          }, {
-            "id": 53,
-            "pid": 48,
-            "name": "电信"
-          }, {
-            "id": 56,
-            "pid": 55,
-            "name": "移动"
-          }, {
-            "id": 57,
-            "pid": 55,
-            "name": "联通"
-          }, {
-            "id": 59,
-            "pid": 55,
-            "name": "电信"
-          }, {
-            "id": 63,
-            "pid": 62,
-            "name": "移动"
-          }, {
-            "id": 65,
-            "pid": 62,
-            "name": "联通"
-          }, {
-            "id": 67,
-            "pid": 62,
-            "name": "电信"
-          }, {
-            "id": 70,
-            "pid": 69,
-            "name": "移动"
-          }, {
-            "id": 71,
-            "pid": 69,
-            "name": "联通"
-          }, {
-            "id": 72,
-            "pid": 69,
-            "name": "电信"
-          }, {
-            "id": 76,
-            "pid": 75,
-            "name": "市话主叫时长"
-          }, {
-            "id": 77,
-            "pid": 75,
-            "name": "市话被叫时长"
-          }, {
-            "id": 79,
-            "pid": 78,
-            "name": "长途主叫时长"
-          }, {
-            "id": 80,
-            "pid": 78,
-            "name": "长途被叫时长"
-          }, {
-            "id": 82,
-            "pid": 81,
-            "name": "省内漫游主叫时长"
-          }, {
-            "id": 83,
-            "pid": 81,
-            "name": "省内漫游被叫时长"
-          }, {
-            "id": 84,
-            "pid": 81,
-            "name": "省际漫游主叫时长"
-          }, {
-            "id": 85,
-            "pid": 81,
-            "name": "省际漫游被叫时长"
-          }, {
-            "id": 101,
-            "pid": 107,
-            "name": "手机上网用户数"
-          }, {
-            "id": 103,
-            "pid": 107,
-            "name": "手机上网普及率"
-          }, {
-            "id": 105,
-            "pid": 107,
-            "name": "T网手机上网用户数"
-          }, {
-            "id": 108,
-            "pid": 107,
-            "name": "GPRS计费流量"
-          }, {
-            "id": 110,
-            "pid": 107,
-            "name": "T网计费流量"
-          }, {
-            "id": 184,
-            "pid": 107,
-            "name": "T网计费流量占比"
-          }, {
-            "id": 113,
-            "pid": 112,
-            "name": "WLAN时长"
-          }, {
-            "id": 117,
-            "pid": 116,
-            "name": "校园V网用户数"
-          }, {
-            "id": 119,
-            "pid": 116,
-            "name": "校园V网通话用户数"
-          }, {
-            "id": 121,
-            "pid": 116,
-            "name": "校园V网普及率"
-          }, {
-            "id": 122,
-            "pid": 116,
-            "name": "V网通话时长"
-          }, {
-            "id": 124,
-            "pid": 116,
-            "name": "V网通话次数"
-          }, {
-            "id": 129,
-            "pid": 128,
-            "name": "移动"
-          }, {
-            "id": 131,
-            "pid": 128,
-            "name": "电信C网"
-          }, {
-            "id": 133,
-            "pid": 128,
-            "name": "联通G网"
-          }, {
-            "id": 136,
-            "pid": 135,
-            "name": "移动"
-          }, {
-            "id": 137,
-            "pid": 135,
-            "name": "电信C网"
-          }, {
-            "id": 138,
-            "pid": 135,
-            "name": "联通G网"
-          }, {
-            "id": 141,
-            "pid": 140,
-            "name": "移动"
-          }, {
-            "id": 143,
-            "pid": 140,
-            "name": "联通"
-          }, {
-            "id": 145,
-            "pid": 140,
-            "name": "电信"
-          }, {
-            "id": 148,
-            "pid": 147,
-            "name": "移动"
-          }, {
-            "id": 149,
-            "pid": 147,
-            "name": "联通"
-          }, {
-            "id": 151,
-            "pid": 147,
-            "name": "电信"
-          }, {
-            "id": 155,
-            "pid": 154,
-            "name": "移动"
-          }, {
-            "id": 157,
-            "pid": 154,
-            "name": "联通"
-          }, {
-            "id": 159,
-            "pid": 154,
-            "name": "电信"
-          }, {
-            "id": 162,
-            "pid": 161,
-            "name": "移动"
-          }, {
-            "id": 163,
-            "pid": 161,
-            "name": "联通"
-          }, {
-            "id": 164,
-            "pid": 161,
-            "name": "电信"
-          }
-        ],
-        firstArr:[
-          1,2,3,4,5,6
-        ]
+        width:350,
+        height:500,
       }
     },
     created(){ 
     },
     mounted(){
-      let res = this.resoveArr(this.firstArr)
-      console.log(res)
     },
     methods:{
-      // 数组方旭的原生方法
-      resoveArr(arr){
-        var result=[]
-        arr.forEach(element => {
-          console.log(element)
-          result.unshift(element)
-        });
-        return result
-      }
-
+      
     },
     components: {
       myHeader
@@ -512,21 +258,5 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    /* css实现宽度为浏览器20% 的正方形 */
-    /* 法1 */
-    .square{
-      width:20%;
-      /* padding-top:20%; */
-      padding-bottom:20%;
-      height:0;
-      background-color: aqua;
-      margin:0 auto;
-    }
-    /* 法2 */
-    #square{  
-      width:20%;  
-      height:20vw;  
-      background:red;  
-      margin:0 auto;
-    }   
+    
 </style>

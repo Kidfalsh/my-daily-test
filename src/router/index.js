@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+Vue.use(Router)
 
 import test from '@/components/test/test'
 import index from '@/components/index/index'
@@ -19,8 +20,8 @@ import arrayClone from '@/components/arrayClone/arrayClone' // 数组/对象克�
 import objClone from '@/components/objClone/objClone' // 对象深浅拷贝
 import gadMap from "@/components/gadMap/gadMap" // 高德地图
 import awaitAsync from "@/components/awaitAsync/awaitAsync"
-Vue.use(Router)
-
+import particle from '@/components/particle/particle'
+// auto add components
 
 export default new Router({
   routes: [
@@ -101,12 +102,16 @@ export default new Router({
       name:'awaitAsync',
       component:awaitAsync
     },{
+      name:'particle',
+      path:'/index/particle',
+      component: particle
+    },{
       path: '/404',
       name: '404',
       component: forbidden
     }, {
       path: '*',    // 此处需特别注意至于最底部
       redirect: '/404'
-    }
+    }// auto add routePath
   ]
 })
