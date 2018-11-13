@@ -89,6 +89,12 @@
             path:'/index/particle',
             bgColor:'#35d871',
             query:{to:'/index/particle'}
+          },
+          {
+            name:"barCode",
+            path:"/index/barCode",
+            bgColor:"#35dddd",
+            query:{to:"/index/barCode"}  
           }
         ]
       }

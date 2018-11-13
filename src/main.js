@@ -41,6 +41,11 @@ AMap.initAMapApiLoader({
   // 插件集合
   plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType']
 });
+
+/**
+ * jsbarcode  条形码
+ */
+var JsBarcode = require('jsbarcode');
 /**
  * 初始化服务器地址
  */

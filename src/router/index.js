@@ -21,6 +21,7 @@ import objClone from '@/components/objClone/objClone' // 对象深浅拷贝
 import gadMap from "@/components/gadMap/gadMap" // 高德地图
 import awaitAsync from "@/components/awaitAsync/awaitAsync"
 import particle from '@/components/particle/particle'
+import barCode from '@/components/barCode/barCode'
 // auto add components
 
 export default new Router({
@@ -112,6 +113,11 @@ export default new Router({
     }, {
       path: '*',    // 此处需特别注意至于最底部
       redirect: '/404'
-    }// auto add routePath
+    },
+        {
+          name: 'barCode',
+          path: '/index/barCode',
+          component: barCode
+        }// auto add routePath
   ]
 })
