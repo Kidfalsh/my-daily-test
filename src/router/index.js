@@ -22,6 +22,7 @@ import gadMap from "@/components/gadMap/gadMap" // 高德地图
 import awaitAsync from "@/components/awaitAsync/awaitAsync"
 import particle from '@/components/particle/particle'
 import barCode from '@/components/barCode/barCode'
+import payOnline from '@/components/payOnline/payOnline'
 // auto add components
 
 export default new Router({
@@ -118,6 +119,11 @@ export default new Router({
           name: 'barCode',
           path: '/index/barCode',
           component: barCode
+        },
+        {
+          name: 'payOnline',
+          path: '/index/payOnline',
+          component: payOnline
         }// auto add routePath
   ]
 })

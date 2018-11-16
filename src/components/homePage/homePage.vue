@@ -95,6 +95,12 @@
             path:"/index/barCode",
             bgColor:"#35dddd",
             query:{to:"/index/barCode"}  
+          },
+          {
+            name:"payOnline",
+            path:"/index/payOnline",
+            bgColor:"#35dd0d",
+            query:{to:"/index/payOnline"}  
           }
         ]
       }

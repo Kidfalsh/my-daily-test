@@ -99,5 +99,17 @@ export default{
    */
   getBarrage(params,config){
     return fetch('/getBarrage',params)
-  }
+  },
+  /**
+   * 获取appid
+   */
+  GetAppId(params, config) {
+    return fetch('/getappid', params)
+  },
+  /**
+   * 通过code获取参数
+   */
+  getInfoByCode(params, config) {
+    return fetch('/getinfobycode', params)
+  },
 }
