@@ -101,6 +101,22 @@
             path:"/index/payOnline",
             bgColor:"#35dd0d",
             query:{to:"/index/payOnline"}  
+          },
+          {
+            name:"hammerJs",
+            path:"/index/hammerJs",
+            bgColor:"#35dd0d",
+            query:{
+              to:"/index/hammerJs"
+            }
+          },
+          {
+            name:"newBarrage",
+            path:"/index/newBarrage",
+            bgColor:"#35dd0d",
+            query:{
+              to:"/index/newBarrage"
+            }
           }
         ]
       }

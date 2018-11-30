@@ -23,6 +23,8 @@ import awaitAsync from "@/components/awaitAsync/awaitAsync"
 import particle from '@/components/particle/particle'
 import barCode from '@/components/barCode/barCode'
 import payOnline from '@/components/payOnline/payOnline'
+import hammerJs from '@/components/hammerJs/hammerJs'
+import newBarrage from '@/components/newBarrage/newBarrage'
 // auto add components
 
 export default new Router({
@@ -124,6 +126,16 @@ export default new Router({
           name: 'payOnline',
           path: '/index/payOnline',
           component: payOnline
+        },
+        {
+          name: 'hammerJs',
+          path: '/index/hammerJs',
+          component: hammerJs
+        },
+        {
+          name: 'newBarrage',
+          path: '/index/newBarrage',
+          component: newBarrage
         }// auto add routePath
   ]
 })
