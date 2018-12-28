@@ -66,6 +66,7 @@ import { pca, pcaa } from "area-data";
         this.api.get(weatherUrl).then(res=>{
           if(res.status=='1000'&&res.desc=='OK'){
             console.log(res.data)
+            alert(res.data.ganmao)
           }
         })
       },
