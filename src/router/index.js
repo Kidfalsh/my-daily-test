@@ -25,6 +25,7 @@ import barCode from '@/components/barCode/barCode'
 import payOnline from '@/components/payOnline/payOnline'
 import hammerJs from '@/components/hammerJs/hammerJs'
 import newBarrage from '@/components/newBarrage/newBarrage'
+import typing from '@/components/typing/typing'
 // auto add components
 
 export default new Router({
@@ -136,6 +137,11 @@ export default new Router({
           name: 'newBarrage',
           path: '/index/newBarrage',
           component: newBarrage
+        },
+        {
+          name: 'typing',
+          path: '/index/typing',
+          component: typing
         }// auto add routePath
   ]
 })

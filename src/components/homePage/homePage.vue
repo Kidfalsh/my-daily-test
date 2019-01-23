@@ -117,6 +117,14 @@
             query:{
               to:"/index/newBarrage"
             }
+          },
+          {
+            name:"实现打印动效",
+            path:"/index/typing",
+            bgColor:"#35dd0d",
+            query:{
+              to:"/index/typing"
+            }
           }
         ]
       }
