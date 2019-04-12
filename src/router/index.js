@@ -26,6 +26,7 @@ import payOnline from '@/components/payOnline/payOnline'
 import hammerJs from '@/components/hammerJs/hammerJs'
 import newBarrage from '@/components/newBarrage/newBarrage'
 import typing from '@/components/typing/typing'
+import countTIME from '@/components/countTIME/countTIME'
 // auto add components
 
 export default new Router({
@@ -142,6 +143,11 @@ export default new Router({
           name: 'typing',
           path: '/index/typing',
           component: typing
+        },
+        {
+          name: 'countTIME',
+          path: '/index/countTIME',
+          component: countTIME
         }// auto add routePath
   ]
 })

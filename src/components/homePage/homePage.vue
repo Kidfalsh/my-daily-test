@@ -125,6 +125,14 @@
             query:{
               to:"/index/typing"
             }
+          },
+          {
+            name:"实现倒计时进度条",
+            path:"/index/countTIME",
+            bgColor:"#35dd0d",
+            query:{
+              to:"/index/countTIME"
+            }
           }
         ]
       }
