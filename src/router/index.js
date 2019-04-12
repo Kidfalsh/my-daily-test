@@ -27,6 +27,7 @@ import hammerJs from '@/components/hammerJs/hammerJs'
 import newBarrage from '@/components/newBarrage/newBarrage'
 import typing from '@/components/typing/typing'
 import countTIME from '@/components/countTIME/countTIME'
+import rollingSuction from '@/components/rollingSuction/rollingSuction'
 // auto add components
 
 export default new Router({
@@ -148,6 +149,11 @@ export default new Router({
           name: 'countTIME',
           path: '/index/countTIME',
           component: countTIME
+        },
+        {
+          name: 'rollingSuction',
+          path: '/index/rollingSuction',
+          component: rollingSuction
         }// auto add routePath
   ]
 })

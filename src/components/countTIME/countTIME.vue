@@ -1,5 +1,6 @@
 <template>
   <div class='countTIME'>
+    <my-header :title="'倒计时'"></my-header>
     <div class="countDown">
       <div class="left">倒计时</div>
       <div class="progressBar">
@@ -10,9 +11,11 @@
   </div>
 </template>
 <script type='text/javascript'>
+  import myHeader from '@/components/base/header/header'
+
   export default{
     name:'countTIME',
-    components:{},
+    components:{myHeader},
     computed:{},
     data(){
       return {

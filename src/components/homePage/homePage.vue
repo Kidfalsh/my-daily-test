@@ -133,6 +133,14 @@
             query:{
               to:"/index/countTIME"
             }
+          },
+          {
+            name:"滚动吸顶实现方式",
+            path:"/index/rollingSuction",
+            bgcolor:"#34ddca",
+            query:{
+              to:"/index/rollingSuction"
+            }
           }
         ]
       }
