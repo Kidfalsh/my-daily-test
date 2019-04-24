@@ -2,16 +2,14 @@
   <div class='rollingSuction'>
     <my-header :title="title"></my-header>
     <!-- way1 使用 position:sticky; -->
-    <div class="body-top"></div>
-    <div class="top">头部</div>
-    <div class="body"></div>
-    <div class="body" style="background:#ddd;"></div>
-    <!-- 方法2 obj.getBoundingClientRect().top -->
-    <!-- <div class="pride_tab_fixed" ref="pride_tab_fixed">
-      <div class="pride_tab" :class="titleFixed==true?'isFixed':''">
-        123
-      </div>
-    </div> -->
+    <div class="content">
+      <div class="body-top"></div>
+      <div class="top">头部</div>
+      <div class="body"></div>
+      <div class="body" style="background:red;"></div>
+      <div class="body" style="background:#fff;"></div>
+      <div class="body" style="background:#ddd;"></div>
+    </div>
   </div>
 </template>
 <script type='text/javascript'>
@@ -58,28 +56,35 @@ import myHeader from '@/components/base/header/header'
 <style lang="scss" scoped>
   .rollingSuction{
     // 方法1： 使用position:sticky;top:xxpx;实现
-    .top{
-      display: flex;
-      align-items: center;
-      height:40px;
-      line-height:40px;
-      color:#333;
-      background: #ddd;
-      position: -webkit-sticky;
-      position: sticky;
-      top:0;
-    }
-    .body{
+    height:100%;
+    width:100%;
+    .content{
       width:100%;
-      min-height:100%;
-    }
-    .body-top{
-      width:100%;
-      min-height:50px;
-      border-bottom-left-radius: 50px;
-      border-bottom-right-radius: 50px;
-      background:seagreen;
-
+      height:100%;
+      overflow: hidden;
+      overflow-y: auto;
+      .top{
+        display: flex;
+        align-items: center;
+        height:40px;
+        line-height:40px;
+        color:#333;
+        background: #ddd;
+        position: -webkit-sticky;
+        position: sticky;
+        top:0;
+      }
+      .body{
+        width:100%;
+        min-height:100%;
+      }
+      .body-top{
+        width:100%;
+        min-height:50px;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        background:seagreen;
+      }
     }
     // 方法2 
     .pride_tab_fixed{
