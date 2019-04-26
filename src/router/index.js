@@ -28,6 +28,8 @@ import newBarrage from '@/components/newBarrage/newBarrage'
 import typing from '@/components/typing/typing'
 import countTIME from '@/components/countTIME/countTIME'
 import rollingSuction from '@/components/rollingSuction/rollingSuction'
+import loadingStyle from '@/components/loadingStyle/loadingStyle'
+import timeFollow from '@/components/timeFollow/timeFollow'
 // auto add components
 
 export default new Router({
@@ -154,6 +156,16 @@ export default new Router({
           name: 'rollingSuction',
           path: '/index/rollingSuction',
           component: rollingSuction
+        },
+        {
+          name: 'loadingStyle',
+          path: '/index/loadingStyle',
+          component: loadingStyle
+        },
+        {
+          name: 'timeFollow',
+          path: '/index/timeFollow',
+          component: timeFollow
         }// auto add routePath
   ]
 })

@@ -137,9 +137,25 @@
           {
             name:"滚动吸顶实现方式",
             path:"/index/rollingSuction",
-            bgcolor:"#34ddca",
+            bgColor:"#34ddca",
             query:{
               to:"/index/rollingSuction"
+            }
+          },
+          {
+            name:"加载图标Css实现",
+            path:"/index/loadingStyle",
+            bgColor:"#35dd0d",
+            query:{
+              to:"/index/loadingStyle"
+            }
+          },
+          {
+            name:"time时间轮转",
+            path:"/index/timeFollow",
+            bgColor:"#35dd0d",
+            query:{
+              to:"/index/timeFollow"
             }
           }
         ]
