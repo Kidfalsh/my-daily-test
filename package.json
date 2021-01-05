@@ -14,7 +14,7 @@
   "dependencies": {
     "adc-addressmap": "^0.0.1",
     "area-data": "^5.0.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "jsbarcode": "^3.11.0",
     "mint-ui": "^2.2.13",
     "qs": "^6.5.2",
